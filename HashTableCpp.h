@@ -4,10 +4,8 @@
 
 namespace whoamifk {
 	namespace { // anonym namespace
-		template<typename _K, typename _V>
+	/*	template<typename _K, typename _V>
 		struct pair {
-			typedef _K _key;
-			typedef _V _value;
 			_K* key;
 			_V* _value;
 		};
@@ -16,29 +14,26 @@ namespace whoamifk {
 			pair<_K, _V>* item;
 			node<_K, _V>* next;
 		};
+	*/
 	};
-	template<typename _K, typename _V, typename _Alloc = std::allocator<pair<_K,_V>>>
+	template<typename _K, typename _V=std::hash<_K>, class Pred = std::equal_to<_K>, typename _Alloc = std::allocator<_K>>
 	class HashTable
 	{
 	public:
-		typedef _K _key;
-		typedef _V _mapped;
-		typedef HashTable<_key, _mapped, _Alloc> _hashTable;
-		typedef pair<_K, _V> value_type;
-		typedef value_type* pointer;
-		typedef const value_type* const_pointer;
-		typedef std::size_t size_type;
+		typedef _K key_type;
+		typedef _K value_type;
+		typedef _V hasher;
+		typedef _Alloc allocator_type;
+		typedef value_type& reference;
+		typedef const value_type& const_reference;
+//		std::allocator_traits<std::allocator<_K>>::pointer pointer; // value_type*
+		typedef size_t size_type;
+		typedef std::ptrdiff_t difference_type;
 
 	private:
-		namespace HashTable {
+//		node<_K,_V>* _head;
+//		size_type _bucket_size=BUCKET_SIZE;
 		
-			namespace iterators {
-				// implement iterators
-			}
-		};
-		node<_K,_V>* _head;
-		size_type _bucket_size=BUCKET_SIZE;
-
 	};
 };
 
